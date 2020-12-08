@@ -37,12 +37,13 @@ Simulation of the detection process of a Moving Target using the Frequency-Modul
 5. Range/Doppler FFT
 
     Applying One-dimensional Fast Fourier Transform (FFT) algorithm on _Beat Signal_ to extract Target Range information, while Two-dimentional FFT extracts Range (_y-axis)_ and Doppler/Velocity (_x-axis_) information surrounded by **Random noise**.
+    
 <img src="./imgs/3_2DFFT.png" alt="2D FFT">
 
-    |Parameter|Ground truth value|Measured value|
-    |-----------|--------|--------|
-    |Range `R` [m]|110 |110.7|
-    |Velocity `v` [m/s]|-30 |-27.56|
+|Parameter|Ground truth value|Measured value|
+|-----------|--------|--------|
+|Range `R` [m]|110 |110.7|
+|Velocity `v` [m/s]|-30 |-27.56|
 
 6. CFAR Detection
 
