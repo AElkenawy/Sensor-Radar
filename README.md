@@ -5,8 +5,7 @@ Simulation of the detection process of a Moving Target using the Frequency-Modul
 
 ## Project steps
 
-<img src="./imgs/1_project_layout.png" alt="Project Layout" width="800" height="550">
-<img src="./imgs/1_project_layout.png" alt="Project Layout">
+<img src="./imgs/1_project_layout.png" alt="Project Layout" width="900" height="511">
 
 ### 2D CFAR implementation steps 
 1. Radar Design Specifications
@@ -27,15 +26,17 @@ Simulation of the detection process of a Moving Target using the Frequency-Modul
     |FMCW chirp signal slope `alpha`|2.04*10^13 [1/s^2]|
 
 3. Moving Target Generation
-    Target is following constant velocity motion model. Updated Range of the Target for each time stamp _(i)_ is `r_t(i) = R + v*t(i)`
+   
+   Target is following constant velocity motion model. Updated Range of the Target for each time stamp _(i)_ is `r_t(i) = R + v*t(i)`
 
 4. Signal Propagation
+    
     _Beat signal_ is the product of the _Transmitted signal_ and _Received signal_. _Received signal_ is a time delayed of the _Transmitted signal_ by delay time τ. 
-<img src="./imgs/2_signal_propagation.png" alt="Propagation formulas" width="800" height="550">
-<img src="./imgs/2_signal_propagation.png" alt="Propagation formulas">
+<img src="./imgs/2_signal_propagation.png" alt="Propagation formulas" width="800" height="465">
 
 5. Range/Doppler FFT
-    Applying One-dimensional Fast Fourier Transform (FFT) algorithm on _Beat Signal_ to extract information of Target Range, while Two-dimentional FFT extracts Range (_y-axis)_ and Doppler/Velocity (_x-axis_) information surrounded by **Random noise**.
+
+    Applying One-dimensional Fast Fourier Transform (FFT) algorithm on _Beat Signal_ to extract Target Range information, while Two-dimentional FFT extracts Range (_y-axis)_ and Doppler/Velocity (_x-axis_) information surrounded by **Random noise**.
 <img src="./imgs/3_2DFFT.png" alt="2D FFT">
 
     |Parameter|Ground truth value|Measured value|
@@ -44,9 +45,11 @@ Simulation of the detection process of a Moving Target using the Frequency-Modul
     |Velocity `v` [m/s]|-30 |-27.56|
 
 6. CFAR Detection
+
     Used to suppress the noise and separate the target signal by averaging noise in the Training cells, then offsetting the averaged value to obtain a real Target threshold.
 
     **CFAR Hyperparameters**
+    
     Added _offset_ of 15
     |Cells Type|Dimension|No. of cells|
     |-----------|--------|--------|
@@ -54,7 +57,7 @@ Simulation of the detection process of a Moving Target using the Frequency-Modul
     |              |Doppler `Td`|8|
     |Guard Cells|Range `Gr`|6|
     |               |Doppler `Gd`|6|
-    <img src="./imgs/4_2DCFAR.png" alt="2D CFAR Cells">
+    <img src="./imgs/4_2DCFAR.png" alt="2D CFAR Cells" width="500" height="342">
 
     Training cells are divided into 4 sections where i: _Range/rows index_ and j: _Doppler/columns index_.
     
